@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script type="text/javascript" src="./js/app.js" defer></script>
+  </head>
+  <body>
+    <div class="overley hidden-overlay">
+      <div class="success-container hidden">
+        <img src="./assets/icons/icon-time.png" alt="" />
+        <span>سفارش شما با موفقیت ثبت شد</span>
+        <span
+          >پروسه آماده سازی ممکن است زمان بر باشد از صبر و شکیبایی شما متشکریم
+          :)</span
+        >
+        <p class="time">5</p>
+      </div>
+      <button class="back-btn">
+        <img style="filter: drop-shadow( 0 0 10px rgba(0, 0, 0, .7));" src="./assets/icons/arrow-down.svg" alt="">
+      </button>
+      <div class="cart-container hidden-modal">
+        <div class="scroll-div"></div>
+        <div class="total-price-container">
+          <span>مجموع:</span>
+          <span id="total-price-cart"></span>
+        </div>
+        <form class="inputs-container" id="form">
+          <input
+            type="tel"
+            maxlength="11"
+            placeholder="شماره تماستون رو وارد کنید"
+            id="phone-number"
+            autocapitalize="off"
+            autocomplete="off"
+          />
+          <button id="submit-btn">ثبت سفارش</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="overley-details hidden-overlay-details">
+      <button class="details-back-btn">
+        <img src="./assets/icons/arrowBackIcon.svg" alt="" />
+      </button>
+      <div class="details-prodoct-container">
+        <div class="header-details">
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              padding: 5px;
+              justify-content: center;
+              margin-right: 10px;
+            "
+          >
+            <span id="title"></span>
+            <span id="price"></span>
+          </div>
+          <img id="image-prod" src="./assets/images/pizzaIMG.png" alt="" />
+        </div>
+        <div class="desc">
+          <span>توضیحات</span>
+          <ul class="descriptions" id="description"></ul>
+        </div>
+        <div class="details-add-cart"></div>
+      </div>
+    </div>
+
+    <header class="header">
+      <div class="header-right">
+        <span class="table-name">میز شماره یازده</span>
+        <span class="shop-name">کافی برگر آمازون</span>
+      </div>
+      <div class="header-left">
+        <button>
+          <img src="./assets/icons/arrowBackIcon.svg" alt="" />
+        </button>
+      </div>
+    </header>
+    <div class="category-container">
+      <button class="category-btn">
+        <span>دسته بندی</span>
+        <img src="./assets/icons/menuIcon.svg" alt="" />
+      </button>
+      <div class="categores hidden">
+        <!-- <span class="category-item">همه</span> -->
+        <!-- <span class="category-item">پیتزا</span>
+        <span class="category-item">نوشیدنی</span> -->
+      </div>
+    </div>
+    <div class="container-product" id="product-list">
+      <div class="prod-right"></div>
+      <div class="prod-left"></div>
+
+      <div class="price-calc-container hidden">
+        <div class="price-calc-right">
+          <span>مجموع سبد خرید</span>
+          <span id="total-price"></span>
+        </div>
+        <div class="price-calc-left">
+          <img src="./assets/icons/arrow-left.svg" id="go-to-cart" alt="">
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
