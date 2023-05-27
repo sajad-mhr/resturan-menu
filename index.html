@@ -16,6 +16,8 @@
     <script type="text/javascript" src="./js/app.js" defer></script>
   </head>
   <body>
+    <!-- <div class="gradient-bottom"></div> -->
+
     <div class="overley hidden-overlay">
       <div class="success-container hidden">
         <img src="./assets/icons/icon-time.png" alt="" />
@@ -27,7 +29,11 @@
         <p class="time">5</p>
       </div>
       <button class="back-btn">
-        <img style="filter: drop-shadow( 0 0 10px rgba(0, 0, 0, .7));" src="./assets/icons/arrow-down.svg" alt="">
+        <img
+          style="filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.7))"
+          src="./assets/icons/arrow-down.svg"
+          alt=""
+        />
       </button>
       <div class="cart-container hidden-modal">
         <div class="scroll-div"></div>
@@ -50,30 +56,44 @@
     </div>
 
     <div class="overley-details hidden-overlay-details">
-      <button class="details-back-btn">
-        <img src="./assets/icons/arrowBackIcon.svg" alt="" />
-      </button>
       <div class="details-prodoct-container">
-        <div class="header-details">
-          <div
-            style="
-              display: flex;
-              flex-direction: column;
-              padding: 5px;
-              justify-content: center;
-              margin-right: 10px;
-            "
-          >
-            <span id="title"></span>
-            <span id="price"></span>
+        <!-- <div class="info-section">
+          <div class="title-product">
+            <span>چلوگوشت</span>
+            <ul>
+              <li>گوشت:1 نیم من</li>
+              <li>گوشت:1 نیم من</li>
+              <li>گوشت:1 نیم من</li>
+            </ul>
           </div>
-          <img id="image-prod" src="./assets/images/pizzaIMG.png" alt="" />
+          <img src="./assets/images/chologosht.png" alt="">
         </div>
-        <div class="desc">
-          <span>توضیحات</span>
-          <ul class="descriptions" id="description"></ul>
+        <span class="desc">چلوگوشت یک غذای لورم ایپسوم با هدف کسشر است</span>
+        <div class="btn-to-cart-container">
+          <span class="price">120 تومان نا قابل</span>
+          <button id="details-add-cart-btn">افزودن به سبد خرید</button>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="categores-overley hidden">
+      <div class="categores">
+        <!-- <div class="category-item">
+          <img class="category-image" src="./assets/images/chologosht.png" alt="">
+          <span class="category-name">نوشیدنی</span>
         </div>
-        <div class="details-add-cart"></div>
+        <div class="category-item">
+          <img class="category-image" src="./assets/images/chologosht.png" alt="">
+          <span class="category-name">نوشیدنی</span>
+        </div>
+        <div class="category-item">
+          <img class="category-image" src="./assets/images/chologosht.png" alt="">
+          <span class="category-name">نوشیدنی</span>
+        </div>
+        <div class="category-item">
+          <img class="category-image" src="./assets/images/chologosht.png" alt="">
+          <span class="category-name">نوشیدنی</span>
+        </div> -->
       </div>
     </div>
 
@@ -88,16 +108,11 @@
         </button>
       </div>
     </header>
-    <div class="category-container">
+    <div class="category-btn-container">
       <button class="category-btn">
-        <span>دسته بندی</span>
+        <span>همه محصولات</span>
         <img src="./assets/icons/menuIcon.svg" alt="" />
       </button>
-      <div class="categores hidden">
-        <!-- <span class="category-item">همه</span> -->
-        <!-- <span class="category-item">پیتزا</span>
-        <span class="category-item">نوشیدنی</span> -->
-      </div>
     </div>
     <div class="container-product" id="product-list">
       <div class="prod-right"></div>
@@ -109,7 +124,7 @@
           <span id="total-price"></span>
         </div>
         <div class="price-calc-left">
-          <img src="./assets/icons/arrow-left.svg" id="go-to-cart" alt="">
+          <img src="./assets/icons/arrow-left.svg" id="go-to-cart" alt="" />
         </div>
       </div>
     </div>

@@ -5,56 +5,105 @@ let productData = [
     image: "assets/images/pizza.png",
     price: 100000,
     categoryID: 1,
-    description: ["گوشت 30%", "پنیر مازارلا"],
+    backgroundColor: "#FFC979",
+    textNameColor: "#C02002",
+    boxShadowColor: "rgba(255,201,121,0.58)",
+    description: "پیتزای ویژه و مخصوص گوشت 100% بخور نفست بالا نیاد",
+    future: {
+      گوشت: "100%",
+      قارچ:"زیاد",
+      پنیر:"گودا"
+    },
   },
   {
     id: 2,
-    name: "قهوه ترک",
-    image: "assets/images/Coffee.png",
-    price: 30000,
-    categoryID: 2,
+    name: "چلوگوشت",
+    image: "../assets/images/chologosht.png",
+    price: 100000,
+    categoryID: 3,
+    backgroundColor: "#757575",
+    textNameColor: "#81FF00",
+    boxShadowColor: "rgba(117,117,117,0.4)",
+    description: "چلوگوشت اعلاء گوشت گاو قرمز با برنج اصیل ایرانی",
+    future: {
+      برنج: "ایرانی اصل",
+      سالاد:"شیرازی",
+    },
   },
   {
     id: 3,
-    name: "قهوه اسپرسو",
-    image: "assets/images/Coffee.png",
-    price: 30000,
+    name: "شراب ناب",
+    image: "../assets/images/sharabNab.png",
+    price: 60000,
     categoryID: 2,
+    backgroundColor: "#F0421C",
+    textNameColor: "#FFCC40",
+    boxShadowColor: "rgba(194,26,26,0.3)",
+    description: "شراب ناب کاشون شنیدی؟؟ همینه ها",
+    future: {
+      میوه: "انگور قرمز",
+    },
   },
   {
     id: 4,
-    name: "کاپوچینو",
-    image: "assets/images/Coffee.png",
-    price: 30000,
-    categoryID: 2,
+    name: "پیتزای ویژه",
+    image: "assets/images/pizza.png",
+    price: 100000,
+    categoryID: 1,
+    backgroundColor: "#FFC979",
+    textNameColor: "#C02002",
+    boxShadowColor: "rgba(255,201,121,0.58)",
+    description: "پیتزای ویژه و مخصوص گوشت 100% بخور نفست بالا نیاد",
+    future: {
+      گوشت: "100%",
+      قارچ:"زیاد",
+      پنیر:"گودا"
+    },
   },
   {
     id: 5,
-    name: "کافه لاته",
-    image: "assets/images/Coffee.png",
-    price: 30000,
-    categoryID: 2,
+    name: "چلوگوشت",
+    image: "../assets/images/chologosht.png",
+    price: 100000,
+    categoryID: 3,
+    backgroundColor: "#757575",
+    textNameColor: "#81FF00",
+    boxShadowColor: "rgba(117,117,117,0.4)",
+    description: "چلوگوشت اعلاء گوشت گاو قرمز با برنج اصیل ایرانی",
+    future: {
+      برنج: "ایرانی اصل",
+      سالاد:"شیرازی",
+    },
   },
   {
     id: 6,
-    name: "پیتزا پپرونی",
-    image: "assets/images/pizzaIMG.png",
-    price: 120000,
-    categoryID: 1,
-  },
-  {
-    id: 7,
-    name: "آیس کافی",
-    image: "assets/images/Coffee.png",
-    price: 40000,
+    name: "شراب ناب",
+    image: "../assets/images/sharabNab.png",
+    price: 60000,
     categoryID: 2,
+    backgroundColor: "#F0421C",
+    textNameColor: "#FFCC40",
+    boxShadowColor: "rgba(194,26,26,0.3)",
+    description: "شراب ناب کاشون شنیدی؟؟ همینه ها",
+    future: {
+      میوه: "انگور قرمز",
+    },
   },
 ];
 
 const categoresData = [
-  { id: 0, category: "همه" },
-  { id: 1, category: "پیتزا" },
-  { id: 2, category: "نوشیدنی" },
+  { id: 0, category: "همه", categoryImage: "../assets/images/chologosht.png" },
+  { id: 1, category: "پیتزا", categoryImage: "../assets/images/pizza.png" },
+  {
+    id: 2,
+    category: "نوشیدنی",
+    categoryImage: "../assets/images/sharabNab.png",
+  },
+  {
+    id: 3,
+    category: "چلویی",
+    categoryImage: "../assets/images/chologosht.png",
+  },
 ];
 
 let cart = [];
@@ -64,6 +113,7 @@ const prodLeft = $.querySelector(".prod-left");
 const productList = $.getElementById("product-list");
 const CategoryBtn = $.querySelector(".category-btn");
 const categores = $.querySelector(".categores");
+const categoresOverley = $.querySelector(".categores-overley");
 const categoryItem = $.querySelector(".category-item");
 const scrollDiv = $.querySelector(".scroll-div");
 const priceCalcContainer = $.querySelector(".price-calc-container");
@@ -80,29 +130,37 @@ const timer = $.querySelector(".time");
 const overleyDetails = $.querySelector(".overley-details");
 const title = $.getElementById("title");
 const imageProd = $.getElementById("image-prod");
-const description = $.getElementById("description");
 const price = $.getElementById("price");
-const detailsAddCart = $.querySelector(".details-add-cart");
 const header = $.querySelector(".header");
-
+const detailsProdoctContainer = $.querySelector(".details-prodoct-container");
 
 function renderData(right, left, data) {
   data.forEach(function (item) {
     let product = `
-    <div class="product-card">
-    <div style="display:flex;flex-direction:column" onclick="openDetailsProduct(${
-      item.id
-    })">
-    <span class="product-name">${item.name}</span>
-    <img class="product-img" src="${item.image}" alt=""  />
-    </div>
-            <div class="add-to-card-container show" data-id=${item.id}>
-              <button class="add-to-card" onclick="addToCart(${item.id})">
+    <div class="product-card" 
+    style="background-image: url(${item.image});
+    background-repeat: no-repeat;
+    background-color:${item.backgroundColor};
+    box-shadow: 0px 0px 10px 5px ${item.boxShadowColor};
+    "
+    >
+    <span class="product-name" style="color:${item.textNameColor}">${
+      item.name
+    }</span>
+    
+            <div class="add-to-card-container show">
+            <div data-id=${item.id} style="display:none" class="added-to-card">
+            <img src="./assets/images/Vector 1.png" alt="" />
+            </div>
+              <button data-id=${
+                item.id
+              } class="add-to-card" onclick="openDetailsProduct(${item.id})">
                 <img src="./assets/icons/cartIcon.svg" alt="" />
               </button>
               <span class="price">${item.price.toLocaleString(
                 "en-US"
               )} تومان</span>
+             
             </div>
     </div>
     `;
@@ -117,7 +175,11 @@ function renderData(right, left, data) {
 function renderCategory(catrgoryData, wrapper) {
   catrgoryData.forEach(function (item) {
     let element = `
-    <span class="category-item" onclick="byCategories(${item.id})">${item.category}</span>
+    <div class="category-item" onclick="byCategories(${item.id})">
+    <img class="category-image" src="${item.categoryImage}" alt="">
+    <span class="category-name">${item.category}</span>
+  </div>
+
     `;
     wrapper.insertAdjacentHTML("beforeend", element);
   });
@@ -130,13 +192,34 @@ function byCategories(categoryId) {
   let filteredData = productData.filter(function (item) {
     return item.categoryID === categoryId;
   });
-  categores.classList.remove("show");
-  categores.classList.add("hidden");
+  categoresOverley.classList.remove("show");
+  categoresOverley.classList.add("hidden");
   $.body.style.overflowY = "scroll";
   renderData(prodRight, prodLeft, filteredData);
   if (categoryId === 0) {
     renderData(prodRight, prodLeft, productData);
   }
+  cart.forEach((c) => {
+    let isCart = cart.some((item) => {
+      return item.id === c.id;
+    });
+    console.log(isCart);
+    if (isCart) {
+      const addedToCard = $.querySelectorAll(".added-to-card");
+      const addToCardBtn = $.querySelectorAll(".add-to-card");
+      addToCardBtn.forEach((btn) => {
+        if (Number(btn.dataset.id) === c.id) {
+          btn.style.display = "none";
+        }
+      });
+
+      addedToCard.forEach((add) => {
+        if (Number(add.dataset.id) === c.id) {
+          add.style.display = "flex";
+        }
+      });
+    }
+  });
 }
 
 function setToLocalStorage(cart) {
@@ -161,108 +244,155 @@ function getFromLocalStorage() {
 }
 
 function openDetailsProduct(prodId) {
-  description.innerHTML = "";
-  detailsAddCart.innerHTML = "";
+  detailsProdoctContainer.innerHTML = "";
   let productFind = productData.find(function (item) {
     return item.id === prodId;
   });
-  let desc = productFind.description;
-  if (desc) {
-    desc.forEach(function (item) {
-      let liElem = `<li>${item}</li>`;
-      description.insertAdjacentHTML("beforeend", liElem);
-    });
-  } else {
-    description.innerHTML = "فاقد توضیحات";
-  }
-  title.innerHTML = productFind.name;
-  price.innerHTML = productFind.price.toLocaleString("en-US") + " تومان ";
-  imageProd.setAttribute("src", productFind.image);
+  console.log(productFind);
+
   $.body.style.overflowY = "hidden";
   overleyDetails.classList.remove("hidden-overlay-details");
   overleyDetails.classList.add("show-overlay-details");
+  let li = "";
+  for (const key in productFind.future) {
+    if (productFind.future.hasOwnProperty(key)) {
+      var value = productFind.future[key];
+      // console.log("Key: " + key + ", Value: " + value);
+      li += `<li>${key}: ${value}</li>`;
+    }
+     
+  }
   let element = `
-  <button class="details-add-cart-btn show" onclick="addToCartInDetails(${productFind.id})">
-  <img src="./assets/icons/cartIcon.svg" alt="" />
-</button>
-<div class="details-counter hidden">
-  <button onclick="increase(${productFind.id})"><span>+</span></button>
-  <span class="quantity">1 عدد</span>
-  <button onclick="decrease(${productFind.id})"><span>-</span></button>
-</div>
-  `;
-
-  detailsAddCart.insertAdjacentHTML("beforeend", element);
+<div class="info-section">
+          <div class="title-product">
+            <span>${productFind.name}</span>
+            <ul>
+            ${li}
+            </ul>
+          </div>
+          <img src="${productFind.image}" alt="">
+        </div>
+        <span class="desc">${productFind.description}</span>
+        <div class="btn-to-cart-container">
+          <span style="color:#C10000" class="price">${productFind.price.toLocaleString(
+            "en-US"
+          )} تومان ناقابل</span>
+          <span style="display:none;color:#C10000" class="added">به سبد خرید اضافه شد</span>
+          <button id="details-add-cart-btn" onclick="addToCart(${
+            productFind.id
+          })">افزودن به سبد خرید</button>
+           <div class="details-counter hidden">
+             <button onclick="increase(${productFind.id})">+</button>
+             <span class="quantity">1 عدد</span>
+             <button onclick="decrease(${productFind.id})">-</button>
+           </div>
+          </div>
+    
+`;
+  detailsProdoctContainer.insertAdjacentHTML("beforeend", element);
   hasInCart(prodId, cart);
 }
 
+overleyDetails.addEventListener("click", (e) => {
+  if (e.target.className === "overley-details show-overlay-details") {
+    overleyDetails.classList.remove("show-overlay-details");
+    overleyDetails.classList.add("hidden-overlay-details");
+    $.body.style.overflowY = "scroll";
+  }
+});
 function hasInCart(prodId, cart) {
+  const detailsAddToCartBtn = $.getElementById("details-add-cart-btn");
+  const detailsCounter = $.querySelector(".details-counter");
+  const price = $.querySelector(".price");
+  const added = $.querySelector(".added");
+  const addedToCard = $.querySelectorAll(".added-to-card");
+  const addToCardBtn = $.querySelectorAll(".add-to-card");
   let has = cart.some(function (item) {
     return item.id === prodId;
   });
 
-  const detailsAddToCartBtn = $.querySelector(".details-add-cart-btn");
-  const detailsCounter = $.querySelector(".details-counter");
   if (has) {
-    detailsAddToCartBtn.className = "details-add-cart-btn hidden";
+    detailsAddToCartBtn.style.display = "none";
     detailsCounter.className = "details-counter show";
+    price.style.display = "none";
+    added.style.display = "block";
     const quantity = $.querySelector(".quantity");
+
+    addToCardBtn.forEach((btn) => {
+      if (Number(btn.dataset.id) === prodId) {
+        btn.style.display = "none";
+      }
+    });
+
+    addedToCard.forEach((add) => {
+      if (Number(add.dataset.id) === prodId) {
+        add.style.display = "flex";
+      }
+    });
+
     let finder = cart.find(function (item) {
       return item.id === prodId;
     });
     quantity.innerHTML = `${finder.productQty} عدد`;
   } else {
-    detailsAddToCartBtn.className = "details-add-cart-btn show";
+    detailsAddToCartBtn.style.display = "flex";
     detailsCounter.className = "details-counter hidden";
+    price.style.display = "block";
+    added.style.display = "none";
   }
 }
 
-function addToCartInDetails(prodId) {
-  const detailsAddToCartBtn = $.querySelector(".details-add-cart-btn");
-  const detailsCounter = $.querySelector(".details-counter");
-  detailsAddToCartBtn.classList.remove("show");
-  detailsAddToCartBtn.classList.add("hidden");
-  detailsCounter.classList.remove("hidden");
-  detailsCounter.classList.add("show");
-  const quantity = $.querySelector(".quantity");
-  quantity.innerHTML = "1 عدد";
-  let findProduct = productData.filter(function (item) {
-    return item.id === prodId;
-  });
-  findProduct.forEach(function (item) {
-    let productObject = {
-      id: item.id,
-      productName: item.name,
-      productImage: item.image,
-      productPrice: item.price,
-      productQty: 1,
-    };
-    cart.push(productObject);
-  });
-
-  setToLocalStorage(cart);
-  priceCalculate(cart);
-  createCartItems(cart);
-}
-
 function updateQuantity(qty, prodId) {
-  const detailsAddToCartBtn = $.querySelector(".details-add-cart-btn");
+  const detailsAddToCartBtn = $.getElementById("details-add-cart-btn");
   const detailsCounter = $.querySelector(".details-counter");
   const quantity = $.querySelector(".quantity");
+  const price = $.querySelector(".price");
+  const added = $.querySelector(".added");
+
+  const addedToCard = $.querySelectorAll(".added-to-card");
+  const addToCardBtn = $.querySelectorAll(".add-to-card");
+
   quantity.innerHTML = `${qty} عدد`;
   if (qty === 0) {
     detailsCounter.className = "details-counter hidden";
-    detailsAddToCartBtn.className = "details-add-cart-btn show";
+    detailsAddToCartBtn.style.display = "flex";
+    added.style.display = "none";
+    price.style.display = "block";
+    addToCardBtn.forEach((btn) => {
+      if (Number(btn.dataset.id) === prodId) {
+        btn.style.display = "flex";
+      }
+    });
+
+    addedToCard.forEach((add) => {
+      if (Number(add.dataset.id) === prodId) {
+        add.style.display = "none";
+      }
+    });
     removeProduct(prodId);
   }
 }
 function updateQuantity_2(qty, prodId) {
   const quantity = $.querySelector(".quantity_2");
+
+  const addedToCard = $.querySelectorAll(".added-to-card");
+  const addToCardBtn = $.querySelectorAll(".add-to-card");
+
   quantity.innerHTML = `${qty} عدد`;
   if (qty === 0) {
     removeProduct(prodId);
+    addToCardBtn.forEach((btn) => {
+      if (Number(btn.dataset.id) === prodId) {
+        btn.style.display = "flex";
+      }
+    });
+
+    addedToCard.forEach((add) => {
+      if (Number(add.dataset.id) === prodId) {
+        add.style.display = "none";
+      }
+    });
   }
- 
 }
 
 function increase(prodId) {
@@ -310,10 +440,18 @@ function decrease_2(prodId) {
 }
 
 CategoryBtn.addEventListener("click", function () {
-  categores.classList.toggle("hidden");
-  if (categores.className === "categores") {
+  categoresOverley.classList.remove("hidden");
+  if (categoresOverley.className === "categores-overley") {
     $.body.style.overflow = "hidden";
   } else {
+    $.body.style.overflow = "scroll";
+  }
+});
+
+categoresOverley.addEventListener("click", (e) => {
+  if (e.target.className === "categores-overley") {
+    categoresOverley.classList.remove("show");
+    categoresOverley.classList.add("hidden");
     $.body.style.overflow = "scroll";
   }
 });
@@ -330,9 +468,7 @@ function createCartItems(cart) {
         <div class="qty-con-cart">
         <button onclick="increase_2(${item.id})"><span>+</span></button>
         <span class="quantity_2">${item.productQty} عدد</span>
-        <button onclick="decrease_2(${
-          item.id
-        })"><span>-</span></button>
+        <button onclick="decrease_2(${item.id})"><span>-</span></button>
         </div>
       </div>
     </div>
@@ -349,6 +485,32 @@ function createCartItems(cart) {
 }
 
 function addToCart(prodId) {
+  const detailsAddToCartBtn = $.getElementById("details-add-cart-btn");
+  const detailsCounter = $.querySelector(".details-counter");
+  const quantity = $.querySelector(".quantity");
+  const price = $.querySelector(".price");
+  const added = $.querySelector(".added");
+  const addedToCard = $.querySelectorAll(".added-to-card");
+  const addToCardBtn = $.querySelectorAll(".add-to-card");
+
+  price.style.display = "none";
+  added.style.display = "block";
+  quantity.innerHTML = "1 عدد";
+  detailsAddToCartBtn.style.display = "none";
+  detailsCounter.className = "details-counter show";
+
+  addToCardBtn.forEach((btn) => {
+    if (Number(btn.dataset.id) === prodId) {
+      btn.style.display = "none";
+    }
+  });
+
+  addedToCard.forEach((add) => {
+    if (Number(add.dataset.id) === prodId) {
+      add.style.display = "flex";
+    }
+  });
+
   let findProduct = productData.filter(function (item) {
     return item.id === prodId;
   });
@@ -397,6 +559,7 @@ function priceCalculate(cart) {
   }
   createCartItems(cart);
 }
+
 function priceCalculateInCart(cart) {
   let total = 0;
   for (let i = 0; i < cart.length; i++) {
@@ -519,27 +682,28 @@ phoneNumberInput.addEventListener("keyup", phoneNumberValid);
 form.addEventListener("submit", submitForm);
 openCartBtn.addEventListener("click", openCart);
 backBtn.addEventListener("click", closeCart);
-detailsBackBtn.addEventListener("click", backFromDetailsBtn);
 window.addEventListener("load", getFromLocalStorage);
 
-prodLeft.addEventListener("click", function () {
-  categores.classList.add("hidden");
-});
-prodRight.addEventListener("click", function () {
-  categores.classList.add("hidden");
-});
-header.addEventListener("click", function () {
-  categores.classList.add("hidden");
-});
+window.addEventListener("load", () => {
+  cart.forEach((c) => {
+    let isCart = cart.some((item) => {
+      return item.id === c.id;
+    });
+    console.log(isCart);
+    if (isCart) {
+      const addedToCard = $.querySelectorAll(".added-to-card");
+      const addToCardBtn = $.querySelectorAll(".add-to-card");
+      addToCardBtn.forEach((btn) => {
+        if (Number(btn.dataset.id) === c.id) {
+          btn.style.display = "none";
+        }
+      });
 
-{
-  /* <div class="product-counter hidden">
-<div class="count-right">
-  <button class="counter-btn increase">+</button>
-  <button class="counter-btn decrease">-</button>
-</div>
-<div class="count-left">
-  <span class="quantity">159 عدد</span>
-</div>
-</div> */
-}
+      addedToCard.forEach((add) => {
+        if (Number(add.dataset.id) === c.id) {
+          add.style.display = "flex";
+        }
+      });
+    }
+  });
+});
