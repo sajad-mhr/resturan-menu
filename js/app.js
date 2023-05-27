@@ -18,7 +18,7 @@ let productData = [
   {
     id: 2,
     name: "چلوگوشت",
-    image: "../assets/images/chologosht.png",
+    image: "assets/images/chologosht.png",
     price: 100000,
     categoryID: 3,
     backgroundColor: "#757575",
@@ -33,7 +33,7 @@ let productData = [
   {
     id: 3,
     name: "شراب ناب",
-    image: "../assets/images/sharabNab.png",
+    image: "assets/images/sharabNab.png",
     price: 60000,
     categoryID: 2,
     backgroundColor: "#F0421C",
@@ -63,7 +63,7 @@ let productData = [
   {
     id: 5,
     name: "چلوگوشت",
-    image: "../assets/images/chologosht.png",
+    image: "assets/images/chologosht.png",
     price: 100000,
     categoryID: 3,
     backgroundColor: "#757575",
@@ -78,7 +78,7 @@ let productData = [
   {
     id: 6,
     name: "شراب ناب",
-    image: "../assets/images/sharabNab.png",
+    image: "assets/images/sharabNab.png",
     price: 60000,
     categoryID: 2,
     backgroundColor: "#F0421C",
