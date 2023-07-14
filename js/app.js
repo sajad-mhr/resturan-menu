@@ -11,8 +11,8 @@ let productData = [
     description: "پیتزای ویژه و مخصوص گوشت 100% بخور نفست بالا نیاد",
     future: {
       گوشت: "100%",
-      قارچ:"زیاد",
-      پنیر:"گودا"
+      قارچ: "زیاد",
+      پنیر: "گودا",
     },
   },
   {
@@ -27,12 +27,12 @@ let productData = [
     description: "چلوگوشت اعلاء گوشت گاو قرمز با برنج اصیل ایرانی",
     future: {
       برنج: "ایرانی اصل",
-      سالاد:"شیرازی",
+      سالاد: "شیرازی",
     },
   },
   {
     id: 3,
-    name: "شراب ناب",
+    name: "ماسالا",
     image: "assets/images/sharabNab.png",
     price: 60000,
     categoryID: 2,
@@ -56,8 +56,8 @@ let productData = [
     description: "پیتزای ویژه و مخصوص گوشت 100% بخور نفست بالا نیاد",
     future: {
       گوشت: "100%",
-      قارچ:"زیاد",
-      پنیر:"گودا"
+      قارچ: "زیاد",
+      پنیر: "گودا",
     },
   },
   {
@@ -72,12 +72,12 @@ let productData = [
     description: "چلوگوشت اعلاء گوشت گاو قرمز با برنج اصیل ایرانی",
     future: {
       برنج: "ایرانی اصل",
-      سالاد:"شیرازی",
+      سالاد: "شیرازی",
     },
   },
   {
     id: 6,
-    name: "شراب ناب",
+    name: "رد موهیتو",
     image: "assets/images/sharabNab.png",
     price: 60000,
     categoryID: 2,
@@ -260,7 +260,6 @@ function openDetailsProduct(prodId) {
       // console.log("Key: " + key + ", Value: " + value);
       li += `<li>${key}: ${value}</li>`;
     }
-     
   }
   let element = `
 <div class="info-section">
@@ -642,7 +641,19 @@ function submitForm(event) {
 function removeProduct(prodId) {
   let getCart = JSON.parse(localStorage.getItem("cart"));
   cart = getCart;
+  const addedToCard = $.querySelectorAll(".added-to-card");
+  const addToCardBtn = $.querySelectorAll(".add-to-card");
+   addToCardBtn.forEach((btn) => {
+      if (Number(btn.dataset.id) === prodId) {
+        btn.style.display = "flex";
+      }
+    });
 
+    addedToCard.forEach((add) => {
+      if (Number(add.dataset.id) === prodId) {
+        add.style.display = "none";
+      }
+    });
   let findIndexProduct = cart.findIndex(function (prod) {
     return prod.id === prodId;
   });
