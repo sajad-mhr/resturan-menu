@@ -92,17 +92,17 @@ let productData = [
 ];
 
 const categoresData = [
-  { id: 0, category: "همه", categoryImage: "../assets/images/chologosht.png" },
-  { id: 1, category: "پیتزا", categoryImage: "../assets/images/pizza.png" },
+  { id: 0, category: "همه", categoryImage: "assets/images/chologosht.png" },
+  { id: 1, category: "پیتزا", categoryImage: "assets/images/pizza.png" },
   {
     id: 2,
     category: "نوشیدنی",
-    categoryImage: "../assets/images/sharabNab.png",
+    categoryImage: "assets/images/sharabNab.png",
   },
   {
     id: 3,
     category: "چلویی",
-    categoryImage: "../assets/images/chologosht.png",
+    categoryImage: "assets/images/chologosht.png",
   },
 ];
 
